@@ -32,9 +32,11 @@ The system issues certificates as NFTs, which serve as attestations of a user's 
 # Challenge Statements Addressed
 
 **Funding the Commons:**
+
 IDSafe implements Hypercerts as NFTs, providing both identity verification and impact tracking. Verified users receive Hypercerts, which could potentially be used by funders to assess and fund individuals with confirmed impacts, aligning IDSafe with Funding the Commons' objectives.
 
 **Decoland Challenges**
+
 IDSafe addresses various Decoland challenge statements as follows:
 
 - Impact Verification Platform for Social and Economic Measures: By using Hypercerts and verified credentials, IDSafe enables transparent verification and tracking of identities that can validate social and economic impact.
@@ -44,6 +46,7 @@ IDSafe addresses various Decoland challenge statements as follows:
 - Impact Data Marketplace: IDSafe sets a foundation for future integration into a decentralized data marketplace, allowing verified users to own their identity data and potentially monetize it.
 
 **DAOstar - DAOIP-5 Use Case Applications**
+
 IDSafe follows the DAOIP-5 standard for interoperability and aligns its data schema with grant management systems, enhancing compatibility for cross-chain applications.
 
 # Technical Details
@@ -51,7 +54,9 @@ IDSafe follows the DAOIP-5 standard for interoperability and aligns its data sch
 # Smart Contracts
 
 **IdentityVerification.sol:** Manages user identity verification processes.
+
 **CrossChainInteroperability.sol:** Facilitates cross-chain verification requests via Chainlink CCIP.
+
 **Hypercert.sol:** Issues NFTs for verified identities, serving as credentials for trust and attribution.
 
 # Sybil Resistance
