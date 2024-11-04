@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDSafe - Decentralized Identity Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-blue-900 text-white py-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">IDSafe</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#vision" class="hover:text-gray-300">Vision</a></li>
+                    <li><a href="#overview" class="hover:text-gray-300">Overview</a></li>
+                    <li><a href="#technical-details" class="hover:text-gray-300">Technical Details</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-8">
+        <section id="vision" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Project Vision</h2>
+            <p class="text-lg">Refugees often lack verifiable documentation to establish their identity...</p>
+        </section>
+
+        <section id="overview" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Overview</h2>
+            <p class="text-lg">IDSafe is a blockchain-based identity verification system designed for refugees...</p>
+        </section>
+
+        <section id="technical-details" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Technical Details</h2>
+            <p class="text-lg">Smart Contracts: IdentityVerification.sol, CrossChainInteroperability.sol, Hypercert.sol...</p>
+        </section>
+
+        <section id="identity-verification" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Identity Verification</h2>
+            <form id="verification-form" class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="mb-4">
+                    <label for="did" class="block text-lg font-medium mb-2">Decentralized Identifier (DID):</label>
+                    <input type="text" id="did" name="did" class="w-full p-3 border border-gray-300 rounded-lg" required>
+                </div>
+                <button type="button" onclick="verifyIdentity()" class="w-full bg-blue-900 text-white py-3 rounded-lg hover:bg-blue-700">Verify Identity</button>
+            </form>
+        </section>
+
+        <section id="issue-hypercert" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Issue Hypercert</h2>
+            <form id="hypercert-form" class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="mb-4">
+                    <label for="identity" class="block text-lg font-medium mb-2">Verified Identity:</label>
+                    <input type="text" id="identity" name="identity" class="w-full p-3 border border-gray-300 rounded-lg" required>
+                </div>
+                <button type="button" onclick="issueHypercert()" class="w-full bg-blue-900 text-white py-3 rounded-lg hover:bg-blue-700">Issue Hypercert</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-blue-900 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 IDSafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+
+        const identityVerificationAddress = "0x7a1781E660d323c2824b18a2698Db69650164C9A";
+        const hypercertAddress = "0xcD275a7E70609843967a219B475D5714Fe5B02c1";
+
+        const identityVerificationABI = [/* ABI for IdentityVerification.sol */];
+        const hypercertABI = [/* ABI for Hypercert.sol */];
+
+        const identityVerificationContract = new web3.eth.Contract(identityVerificationABI, identityVerificationAddress);
+        const hypercertContract = new web3.eth.Contract(hypercertABI, hypercertAddress);
+
+        async function verifyIdentity() {
+            const did = document.getElementById('did').value;
+            const accounts = await web3.eth.getAccounts();
+            await identityVerificationContract.methods.verifyIdentity(did).send({ from: accounts[0] });
+            alert('Identity Verified');
+        }
+
+        async function issueHypercert() {
+            const identity = document.getElementById('identity').value;
+            const accounts = await web3.eth.getAccounts();
+            await hypercertContract.methods.issueHypercert(identity).send({ from: accounts[0] });
+            alert('Hypercert Issued');
+        }
+    </script>
+</body>
+</html>
